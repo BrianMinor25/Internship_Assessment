@@ -7,6 +7,11 @@ function addNewAnimal(id, name, age, sex, weight, classification)
   zooAnimal.sex = sex;
   zooAnimal.weight = weight;
   zooAnimal.classification = classification;
+  zooAnimal.info = function()
+  {
+    alert("Type: " + zooAnimal.id + "\nName:" + zooAnimal.name + "\nAge: " + zooAnimal.age + "\nSex: " + zooAnimal.sex + "\nWeight: " + zooAnimal.classification);
+  }
+
   return zooAnimal;
 }
 
@@ -26,17 +31,24 @@ var zooFinish = function()
 
 var zooAddAnimal = function()
 {
-  var animalAdd = prompt("What kind of animal would you like to add?\n\nIf you wish you stop adding, just type 'back'.");
+  var animalAdd = prompt("What kind of animal would you like to add? Type one of the animal names below to add it. \n\nTiger\n\nLion\n\nBear\n\nTurtle\n\nCheetah\n\nGorilla\n\nIf you wish you stop adding, just type 'back'.");
   if (animalAdd === "back")
     {
       startZoo();
     }
-  else
+  else if (animalAdd === "lion" || animalAdd === "tiger" || animalAdd === "bear" || animalAdd ==="turtle" || animalAdd === "cheetah" || animalAdd === "gorilla")
     {
       animalArray.push(animalAdd);
       console.log(animalArray);
+      var last = animalArray[animalArray.length - 1]
+      alert("You added a " + last + " to the zoo!")
       zooAddAnimal();
     }
+  else
+  {
+    alert("That is not a valid animal for our zoo! Please try again.")
+    zooAddAnimal();
+  }
 }
 
 var zooSearchByType = function()
@@ -50,10 +62,12 @@ var zooSearchByType = function()
     }
   else if (typeSearch === "bear")
     {
+      alert("The bear in our zoo is " + bear1.name + ". " + bear1.name + " is " + bear1.age + "-years-old, is a " + bear1.classification + ", and weighs " + bear1.weight + ".");
       zooSearchByType();
     }
   else if (typeSearch === "turtle")
     {
+      alert("The turtle in our zoo is " + turtle1.name + ". " + turtle1.name + " is " + turtle1.age + "-years-old, is a " + turtle1.classification + ", and weighs " + turtle1.weight + ".");
       zooSearchByType();
     }
   else if (typeSearch === "back")
@@ -104,7 +118,10 @@ var zooSearch = function()
 
 var zooList = function()
 {
-  alert("Animals go here.");
+  for (var i = 0; i < animalArray.length; i++)
+  {
+    animalArray[i].info();
+  }
   startZoo();
 }
 
